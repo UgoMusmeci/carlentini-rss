@@ -71,7 +71,7 @@ rss_content = f"""<?xml version="1.0" encoding="UTF-8"?>
     <title>Comune di Carlentini - Novità</title>
     <link>{URL}</link>
     <description>Feed RSS automatico</description>
-    <lastBuildDate>{datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')}</lastBuildDate>
+    <lastBuildDate>{datetime.now(UTC).strftime('%a, %d %b %Y %H:%M:%S GMT')}</lastBuildDate>
 
     {rss_items}
 
