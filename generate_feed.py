@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from datetime import datetime
+from datetime import datetime, UTC
 import os
 
 URL = "https://www.comune.carlentini.sr.it/novita/"
