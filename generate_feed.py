@@ -1,7 +1,9 @@
 import requests
+import os
 from bs4 import BeautifulSoup
 from datetime import datetime, UTC
 import os
+import re
 
 URL = "https://www.comune.carlentini.sr.it/novita/"
 
@@ -13,7 +15,22 @@ headers = {
     )
 }
 
-print("Scarico pagina...")
+mesi = {
+    "gennaio": 1,
+    "febbraio": 2,
+    "marzo": 3,
+    "aprile": 4,
+    "maggio": 5,
+    "giugno": 6,
+    "luglio": 7,
+    "agosto": 8,
+    "settembre": 9,
+    "ottobre": 10,
+    "novembre": 11,
+    "dicembre": 12
+}
+
+print("Scarico pagina novità...")
 
 response = requests.get(URL, headers=headers, timeout=30)
 response.raise_for_status()
@@ -45,23 +62,85 @@ for link in links:
 
     usati.add(href)
 
-    items.append({
-        "title": titolo,
-        "link": href,
-        "description": titolo
-    })
+    print(f"Leggo articolo: {titolo}")
+
+    try:
+        articolo = requests.get(href, headers=headers, timeout=30)
+        articolo.raise_for_status()
+
+        articolo_soup = BeautifulSoup(articolo.text, "html.parser")
+
+        testo_pagina = articolo_soup.get_text(" ", strip=True)
+
+        # Cerca data tipo "Data 10 Marzo 2025"
+        match = re.search(
+            r"Data\s+(\d{1,2})\s+([A-Za-zàèéìòù]+)\s+(\d{4})",
+            testo_pagina,
+            re.IGNORECASE
+        )
+
+        pub_date = datetime.now(UTC)
+
+        if match:
+            giorno = int(match.group(1))
+            mese_nome = match.group(2).lower()
+            anno = int(match.group(3))
+
+            mese = mesi.get(mese_nome)
+
+            if mese:
+                pub_date = datetime(
+                    anno,
+                    mese,
+                    giorno,
+                    tzinfo=UTC
+                )
+
+        # Primo paragrafo utile
+        paragrafi = articolo_soup.find_all("p")
+
+        descrizione = titolo
+
+        for p in paragrafi:
+            testo = p.get_text(strip=True)
+
+            if len(testo) > 80:
+                descrizione = testo[:300]
+                break
+
+        items.append({
+            "title": titolo,
+            "link": href,
+            "description": descrizione,
+            "pubDate": pub_date
+        })
+
+    except Exception as e:
+        print(f"Errore articolo {href}: {e}")
 
     if len(items) >= 15:
         break
 
+# Ordina dal più recente
+items.sort(
+    key=lambda x: x["pubDate"],
+    reverse=True
+)
+
 rss_items = ""
 
 for item in items:
+    pub_date_str = item["pubDate"].strftime(
+        "%a, %d %b %Y %H:%M:%S GMT"
+    )
+
     rss_items += f"""
     <item>
         <title><![CDATA[{item['title']}]]></title>
         <link>{item['link']}</link>
         <description><![CDATA[{item['description']}]]></description>
+        <pubDate>{pub_date_str}</pubDate>
+        <guid>{item['link']}</guid>
     </item>
     """
 
