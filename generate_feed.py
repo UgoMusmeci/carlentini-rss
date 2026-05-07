@@ -1,10 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
-from feedgen.feed import FeedGenerator
+from datetime import datetime
+import os
 
 URL = "https://www.comune.carlentini.sr.it/novita/"
 
-# Simula un browser reale
 headers = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -13,60 +13,76 @@ headers = {
     )
 }
 
-# Scarica la pagina
-response = requests.get(URL, headers=headers)
+print("Scarico pagina...")
+
+response = requests.get(URL, headers=headers, timeout=30)
 response.raise_for_status()
 
-# Parsing HTML
+print("Pagina scaricata")
+
 soup = BeautifulSoup(response.text, "html.parser")
 
-# Crea feed RSS
-fg = FeedGenerator()
-fg.title("Comune di Carlentini - Novità")
-fg.link(href=URL)
-fg.description("Feed RSS automatico generato esternamente")
-
-# Cerca tutti i link presenti nella pagina
 links = soup.find_all("a", href=True)
 
 usati = set()
-contatore = 0
+items = []
 
 for link in links:
     href = link["href"]
-    testo = link.get_text(strip=True)
+    titolo = link.get_text(strip=True)
 
-    # Salta elementi inutili
-    if not testo:
+    if not titolo:
         continue
 
     if href in usati:
         continue
 
-    # Tiene solo link relativi alle novità
     if "/novita/" not in href:
         continue
 
-    # Evita testi troppo corti
-    if len(testo) < 10:
+    if len(titolo) < 10:
         continue
 
     usati.add(href)
 
-    # Aggiunge elemento al feed
-    fe = fg.add_entry()
-    fe.title(testo)
-    fe.link(href=href)
-    fe.description(testo)
+    items.append({
+        "title": titolo,
+        "link": href,
+        "description": titolo
+    })
 
-    contatore += 1
-
-    # Limita numero elementi
-    if contatore >= 15:
+    if len(items) >= 15:
         break
 
-# Salva file RSS
-fg.rss_file("feed.xml")
+rss_items = ""
 
-print(f"Feed creato con {contatore} elementi")
-print("File generato: feed.xml")
+for item in items:
+    rss_items += f"""
+    <item>
+        <title><![CDATA[{item['title']}]]></title>
+        <link>{item['link']}</link>
+        <description><![CDATA[{item['description']}]]></description>
+    </item>
+    """
+
+rss_content = f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+    <title>Comune di Carlentini - Novità</title>
+    <link>{URL}</link>
+    <description>Feed RSS automatico</description>
+    <lastBuildDate>{datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')}</lastBuildDate>
+
+    {rss_items}
+
+</channel>
+</rss>
+"""
+
+output_file = os.path.abspath("feed.xml")
+
+with open(output_file, "w", encoding="utf-8") as f:
+    f.write(rss_content)
+
+print(f"Feed creato con {len(items)} elementi")
+print(f"Feed salvato in: {output_file}")
