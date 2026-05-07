@@ -10,7 +10,7 @@ python generate_feed.py
 
 git add .
 
-git commit -m "Aggiornamento automatico feed RSS"
+git commit -m "Aggiornamento automatico feed RSS" || exit /b
 
 git push
 
