@@ -18,4 +18,3 @@ echo ============================
 echo Operazione completata
 echo ============================
 
-pause
