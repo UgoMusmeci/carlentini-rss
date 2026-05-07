@@ -1,5 +1,4 @@
 import requests
-import os
 from bs4 import BeautifulSoup
 from datetime import datetime, UTC
 import os
@@ -45,6 +44,7 @@ usati = set()
 items = []
 
 for link in links:
+
     href = link["href"]
     titolo = link.get_text(strip=True)
 
@@ -65,16 +65,33 @@ for link in links:
     print(f"Leggo articolo: {titolo}")
 
     try:
-        articolo = requests.get(href, headers=headers, timeout=30)
+
+        articolo = requests.get(
+            href,
+            headers=headers,
+            timeout=30
+        )
+
         articolo.raise_for_status()
 
-        articolo_soup = BeautifulSoup(articolo.text, "html.parser")
+        articolo_soup = BeautifulSoup(
+            articolo.text,
+            "html.parser"
+        )
 
-        testo_pagina = articolo_soup.get_text(" ", strip=True)
+        testo_pagina = articolo_soup.get_text(
+            " ",
+            strip=True
+        )
 
-        # Cerca data tipo "Data 10 Marzo 2025"
+        # DEBUG
+        print(testo_pagina[:500])
+
+        # Cerca date tipo:
+        # Data: 10 Marzo 2025
+
         match = re.search(
-            r"Data\s+(\d{1,2})\s+([A-Za-zàèéìòù]+)\s+(\d{4})",
+            r"Data:\s*(\d{1,2})\s+([A-Za-zàèéìòù]+)\s+(\d{4})",
             testo_pagina,
             re.IGNORECASE
         )
@@ -82,6 +99,7 @@ for link in links:
         pub_date = datetime.now(UTC)
 
         if match:
+
             giorno = int(match.group(1))
             mese_nome = match.group(2).lower()
             anno = int(match.group(3))
@@ -89,6 +107,7 @@ for link in links:
             mese = mesi.get(mese_nome)
 
             if mese:
+
                 pub_date = datetime(
                     anno,
                     mese,
@@ -96,15 +115,25 @@ for link in links:
                     tzinfo=UTC
                 )
 
-        # Primo paragrafo utile
+                print(
+                    f"DATA TROVATA: "
+                    f"{giorno}/{mese}/{anno}"
+                )
+
+        else:
+
+            print("NESSUNA DATA TROVATA")
+
         paragrafi = articolo_soup.find_all("p")
 
         descrizione = titolo
 
         for p in paragrafi:
+
             testo = p.get_text(strip=True)
 
             if len(testo) > 80:
+
                 descrizione = testo[:300]
                 break
 
@@ -116,12 +145,12 @@ for link in links:
         })
 
     except Exception as e:
-        print(f"Errore articolo {href}: {e}")
+
+        print(f"ERRORE ARTICOLO: {e}")
 
     if len(items) >= 15:
         break
 
-# Ordina dal più recente
 items.sort(
     key=lambda x: x["pubDate"],
     reverse=True
@@ -130,6 +159,7 @@ items.sort(
 rss_items = ""
 
 for item in items:
+
     pub_date_str = item["pubDate"].strftime(
         "%a, %d %b %Y %H:%M:%S GMT"
     )
