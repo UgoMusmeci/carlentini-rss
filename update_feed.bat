@@ -2,19 +2,16 @@
 
 cd /d C:\GitHub\carlentini-rss
 
-echo ============================
-echo Aggiornamento feed RSS
-echo ============================
+echo ============================ >> log.txt
+echo AVVIO %date% %time% >> log.txt
 
-python generate_feed.py
+python generate_feed.py >> log.txt 2>&1
 
-git add .
+git add . >> log.txt 2>&1
 
-git commit -m "Aggiornamento automatico feed RSS" || exit /b
+git commit -m "Aggiornamento automatico feed RSS" >> log.txt 2>&1
 
-git push
+git push >> log.txt 2>&1
 
-echo ============================
-echo Operazione completata
-echo ============================
-
+echo COMPLETATO %date% %time% >> log.txt
+echo ============================ >> log.txt

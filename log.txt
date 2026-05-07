@@ -1,0 +1,8 @@
+============================ 
+AVVIO 07/05/2026 16:21:48,43 
+C:\GitHub\carlentini-rss\generate_feed.py:74: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  <lastBuildDate>{datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')}</lastBuildDate>
+Scarico pagina...
+Pagina scaricata
+Feed creato con 15 elementi
+Feed salvato in: C:\GitHub\carlentini-rss\feed.xml
