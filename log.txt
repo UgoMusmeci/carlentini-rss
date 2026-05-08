@@ -41,3 +41,67 @@ To https://github.com/UgoMusmeci/carlentini-rss.git
    cef259f..8760c73  main -> main
 COMPLETATO 07/05/2026 16:24:34,28 
 ============================ 
+============================ 
+AVVIO 07/05/2026 17:08:09,66 
+Scarico pagina novità...
+Pagina scaricata
+Leggo articolo: Censimento amianto: comunicazione al Comune sulla presenza del materiale da parte di soggetti pubblici e privati
+DATA TROVATA: 10/3/2025
+Leggo articolo: Reddito di Povertà: presentazione domande a partire dal 25 febbraio
+DATA TROVATA: 24/2/2025
+Leggo articolo: “Carlentini a Scuola”: doposcuola gratuito per alunni di scuola primaria
+DATA TROVATA: 22/11/2024
+Leggo articolo: Servizio Civile Universale: selezione operatori volontari
+DATA TROVATA: 7/5/2026
+Leggo articolo: Raccolta differenziata dei rifiuti: sospensione del servizio per venerdì 1 maggio
+DATA TROVATA: 27/4/2026
+Leggo articolo: Sogert: aggiornamento luogo e orario di ricevimento del pubblico
+DATA TROVATA: 27/4/2026
+Leggo articolo: Raccolta differenziata dei rifiuti: sospensione del servizio sabato 25 aprile 2026
+DATA TROVATA: 24/4/2026
+Leggo articolo: Fondo di solidarietà comunale: petizione per incremento di 200 milioni per i Comuni siciliani
+DATA TROVATA: 17/4/2026
+Leggo articolo: Contributi per abitazioni in locazione: criteri e modalità di erogazione
+DATA TROVATA: 14/4/2026
+Leggo articolo: Servizio Civile Universale 2026: proroga del termine di presentazione delle domande
+DATA TROVATA: 8/4/2026
+Leggo articolo: Sogert: aggiornamento luogo e orario di ricevimento del pubblico
+DATA TROVATA: 2/4/2026
+Leggo articolo: Campagna Screening 2026: il Camper Mammografico dell’ASP
+DATA TROVATA: 25/3/2026
+Leggo articolo: Servizio Civile Universale: incontro online con il responsabile ed il coordinatore
+DATA TROVATA: 23/3/2026
+Leggo articolo: Referendum confermativo del 22 e 23 marzo 2026: luogo di riunione delle sezioni elettorali
+DATA TROVATA: 18/3/2026
+Leggo articolo: Referendum confermativo del 22 e 23 marzo 2026: servizio di trasporto per elettori non deambulanti
+DATA TROVATA: 17/3/2026
+
+========== ORDINE FINALE ==========
+
+07/05/2026 - Servizio Civile Universale: selezione operatori volontari
+27/04/2026 - Raccolta differenziata dei rifiuti: sospensione del servizio per venerdì 1 maggio
+27/04/2026 - Sogert: aggiornamento luogo e orario di ricevimento del pubblico
+24/04/2026 - Raccolta differenziata dei rifiuti: sospensione del servizio sabato 25 aprile 2026
+17/04/2026 - Fondo di solidarietà comunale: petizione per incremento di 200 milioni per i Comuni siciliani
+14/04/2026 - Contributi per abitazioni in locazione: criteri e modalità di erogazione
+08/04/2026 - Servizio Civile Universale 2026: proroga del termine di presentazione delle domande
+02/04/2026 - Sogert: aggiornamento luogo e orario di ricevimento del pubblico
+25/03/2026 - Campagna Screening 2026: il Camper Mammografico dell’ASP
+23/03/2026 - Servizio Civile Universale: incontro online con il responsabile ed il coordinatore
+18/03/2026 - Referendum confermativo del 22 e 23 marzo 2026: luogo di riunione delle sezioni elettorali
+17/03/2026 - Referendum confermativo del 22 e 23 marzo 2026: servizio di trasporto per elettori non deambulanti
+10/03/2025 - Censimento amianto: comunicazione al Comune sulla presenza del materiale da parte di soggetti pubblici e privati
+24/02/2025 - Reddito di Povertà: presentazione domande a partire dal 25 febbraio
+22/11/2024 - “Carlentini a Scuola”: doposcuola gratuito per alunni di scuola primaria
+
+===================================
+
+Feed creato con 15 elementi
+Feed salvato in: C:\GitHub\carlentini-rss\feed.xml
+Nuove modifiche trovate 
+[main 39b72b2] Aggiornamento automatico feed RSS
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To https://github.com/UgoMusmeci/carlentini-rss.git
+   ac96656..39b72b2  main -> main
+COMPLETATO 07/05/2026 17:08:18,81 
+============================ 

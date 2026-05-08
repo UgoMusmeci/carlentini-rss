@@ -84,12 +84,6 @@ for link in links:
             strip=True
         )
 
-        # DEBUG
-        print(testo_pagina[:500])
-
-        # Cerca date tipo:
-        # Data: 10 Marzo 2025
-
         match = re.search(
             r"Data:\s*(\d{1,2})\s+([A-Za-zàèéìòù]+)\s+(\d{4})",
             testo_pagina,
@@ -151,10 +145,23 @@ for link in links:
     if len(items) >= 15:
         break
 
+# ORDINA DAL PIÙ RECENTE
 items.sort(
     key=lambda x: x["pubDate"],
     reverse=True
 )
+
+print("\n========== ORDINE FINALE ==========\n")
+
+for item in items:
+
+    print(
+        item["pubDate"].strftime("%d/%m/%Y"),
+        "-",
+        item["title"]
+    )
+
+print("\n===================================\n")
 
 rss_items = ""
 
@@ -180,7 +187,6 @@ rss_content = f"""<?xml version="1.0" encoding="UTF-8"?>
     <title>Comune di Carlentini - Novità</title>
     <link>{URL}</link>
     <description>Feed RSS automatico</description>
-    <lastBuildDate>{datetime.now(UTC).strftime('%a, %d %b %Y %H:%M:%S GMT')}</lastBuildDate>
 
     {rss_items}
 
