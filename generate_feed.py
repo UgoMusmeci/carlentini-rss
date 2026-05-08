@@ -31,51 +31,81 @@ mesi = {
 
 print("Scarico pagina novità...")
 
-response = requests.get(URL, headers=headers, timeout=30)
+response = requests.get(
+    URL,
+    headers=headers,
+    timeout=30
+)
+
 response.raise_for_status()
 
 print("Pagina scaricata")
 
-soup = BeautifulSoup(response.text, "html.parser")
+soup = BeautifulSoup(
+    response.text,
+    "html.parser"
+)
 
 links = soup.find_all("a", href=True)
 
-usati = set()
 items = []
+usati = set()
+
+# limiteremo ai primi 30 articoli validi
+articoli_validi = []
 
 for link in links:
 
-    href = link["href"]
+    href = link.get("href", "")
+
     titolo = link.get_text(strip=True)
 
     if not titolo:
         continue
 
-    if href in usati:
+    if len(titolo) < 15:
         continue
 
+    # solo articoli novità
     if "/novita/" not in href:
         continue
 
-    if len(titolo) < 10:
+    # evita duplicati
+    if href in usati:
         continue
 
     usati.add(href)
+
+    articoli_validi.append({
+        "href": href,
+        "titolo": titolo
+    })
+
+# tieni solo i primi 30 articoli trovati
+articoli_validi = articoli_validi[:30]
+
+print(f"Trovati {len(articoli_validi)} articoli da analizzare")
+
+for articolo in articoli_validi:
+
+    href = articolo["href"]
+
+    titolo = articolo["titolo"]
 
     print(f"Leggo articolo: {titolo}")
 
     try:
 
-        articolo = requests.get(
+        articolo_response = requests.get(
             href,
             headers=headers,
             timeout=30
         )
 
-        articolo.raise_for_status()
+        articolo_response.raise_for_status()
 
         articolo_soup = BeautifulSoup(
-            articolo.text,
+            articolo_response.text,
             "html.parser"
         )
 
@@ -84,43 +114,48 @@ for link in links:
             strip=True
         )
 
+        # Cerca:
+        # Data: 10 Marzo 2025
+
         match = re.search(
-            r"Data:\s*(\d{1,2})\s+([A-Za-zàèéìòù]+)\s+(\d{4})",
+            r"Data:\s*(\d{1,2})\s+([A-Za-zà]+)\s+(\d{4})",
             testo_pagina,
             re.IGNORECASE
         )
 
-        pub_date = datetime.now(UTC)
-
-        if match:
-
-            giorno = int(match.group(1))
-            mese_nome = match.group(2).lower()
-            anno = int(match.group(3))
-
-            mese = mesi.get(mese_nome)
-
-            if mese:
-
-                pub_date = datetime(
-                    anno,
-                    mese,
-                    giorno,
-                    tzinfo=UTC
-                )
-
-                print(
-                    f"DATA TROVATA: "
-                    f"{giorno}/{mese}/{anno}"
-                )
-
-        else:
+        if not match:
 
             print("NESSUNA DATA TROVATA")
+            continue
 
-        paragrafi = articolo_soup.find_all("p")
+        giorno = int(match.group(1))
+
+        mese_nome = match.group(2).lower()
+
+        anno = int(match.group(3))
+
+        mese = mesi.get(mese_nome)
+
+        if not mese:
+
+            print("MESE NON RICONOSCIUTO")
+            continue
+
+        pub_date = datetime(
+            anno,
+            mese,
+            giorno,
+            tzinfo=UTC
+        )
+
+        print(
+            f"DATA TROVATA: "
+            f"{giorno}/{mese}/{anno}"
+        )
 
         descrizione = titolo
+
+        paragrafi = articolo_soup.find_all("p")
 
         for p in paragrafi:
 
@@ -128,7 +163,7 @@ for link in links:
 
             if len(testo) > 80:
 
-                descrizione = testo[:300]
+                descrizione = testo[:500]
                 break
 
         items.append({
@@ -142,14 +177,14 @@ for link in links:
 
         print(f"ERRORE ARTICOLO: {e}")
 
-    if len(items) >= 15:
-        break
-
-# ORDINA DAL PIÙ RECENTE
+# ordina dalla più recente
 items.sort(
     key=lambda x: x["pubDate"],
     reverse=True
 )
+
+# tieni solo le ultime 15 news reali
+items = items[:15]
 
 print("\n========== ORDINE FINALE ==========\n")
 
@@ -186,7 +221,7 @@ rss_content = f"""<?xml version="1.0" encoding="UTF-8"?>
 <channel>
     <title>Comune di Carlentini - Novità</title>
     <link>{URL}</link>
-    <description>Feed RSS automatico</description>
+    <description>Feed RSS automatico Comune di Carlentini</description>
 
     {rss_items}
 
@@ -197,6 +232,7 @@ rss_content = f"""<?xml version="1.0" encoding="UTF-8"?>
 output_file = os.path.abspath("feed.xml")
 
 with open(output_file, "w", encoding="utf-8") as f:
+
     f.write(rss_content)
 
 print(f"Feed creato con {len(items)} elementi")

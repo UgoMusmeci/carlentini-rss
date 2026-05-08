@@ -1,50 +1,8 @@
 ============================ 
-AVVIO 07/05/2026 16:21:48,43 
-C:\GitHub\carlentini-rss\generate_feed.py:74: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
-  <lastBuildDate>{datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')}</lastBuildDate>
-Scarico pagina...
-Pagina scaricata
-Feed creato con 15 elementi
-Feed salvato in: C:\GitHub\carlentini-rss\feed.xml
-[main dc78188] Aggiornamento automatico feed RSS
- 3 files changed, 17 insertions(+), 12 deletions(-)
- create mode 100644 log.txt
-To https://github.com/UgoMusmeci/carlentini-rss.git
-   a3b91f8..dc78188  main -> main
-COMPLETATO 07/05/2026 16:21:51,52 
-============================ 
-============================ 
-AVVIO 07/05/2026 16:22:57,40 
-C:\GitHub\carlentini-rss\generate_feed.py:74: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
-  <lastBuildDate>{datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')}</lastBuildDate>
-Scarico pagina...
-Pagina scaricata
-Feed creato con 15 elementi
-Feed salvato in: C:\GitHub\carlentini-rss\feed.xml
-warning: in the working copy of 'log.txt', LF will be replaced by CRLF the next time Git touches it
-[main cef259f] Aggiornamento automatico feed RSS
- 3 files changed, 17 insertions(+), 2 deletions(-)
-To https://github.com/UgoMusmeci/carlentini-rss.git
-   dc78188..cef259f  main -> main
-COMPLETATO 07/05/2026 16:23:00,50 
-============================ 
-============================ 
-AVVIO 07/05/2026 16:24:31,05 
-Scarico pagina...
-Pagina scaricata
-Feed creato con 15 elementi
-Feed salvato in: C:\GitHub\carlentini-rss\feed.xml
-warning: in the working copy of 'log.txt', LF will be replaced by CRLF the next time Git touches it
-[main 8760c73] Aggiornamento automatico feed RSS
- 3 files changed, 15 insertions(+), 2 deletions(-)
-To https://github.com/UgoMusmeci/carlentini-rss.git
-   cef259f..8760c73  main -> main
-COMPLETATO 07/05/2026 16:24:34,28 
-============================ 
-============================ 
-AVVIO 07/05/2026 17:08:09,66 
+AVVIO 08/05/2026 12:41:27,16 
 Scarico pagina novità...
 Pagina scaricata
+Trovati 30 articoli da analizzare
 Leggo articolo: Censimento amianto: comunicazione al Comune sulla presenza del materiale da parte di soggetti pubblici e privati
 DATA TROVATA: 10/3/2025
 Leggo articolo: Reddito di Povertà: presentazione domande a partire dal 25 febbraio
@@ -75,6 +33,36 @@ Leggo articolo: Referendum confermativo del 22 e 23 marzo 2026: luogo di riunion
 DATA TROVATA: 18/3/2026
 Leggo articolo: Referendum confermativo del 22 e 23 marzo 2026: servizio di trasporto per elettori non deambulanti
 DATA TROVATA: 17/3/2026
+Leggo articolo: Referendum confermativo del 22 e 23 marzo 2026: rilascio tessere elettorali
+DATA TROVATA: 16/3/2026
+Leggo articolo: Allerta meteo arancione: misure di sicurezza a tutela della pubblica incolumità
+DATA TROVATA: 15/3/2026
+Leggo articolo: Esumazioni ordinarie presso il cimitero comunale: a partire dal 30 aprile
+DATA TROVATA: 10/3/2026
+Leggo articolo: Bonus di €.1.000,00 per la nascita di un figlio – Anno 2026
+DATA TROVATA: 5/3/2026
+Leggo articolo: Servizio Civile Universale 2026: selezione di 14 operatori volontari da impiegare nei progetti
+DATA TROVATA: 3/3/2026
+Leggo articolo: Scadenza Carta di Identità cartacea: a partire dal 3 agosto 2026
+DATA TROVATA: 3/3/2026
+Leggo articolo: Manifestazione di interesse alla messa a disposizione di aree per impianto TMB – SRR ATO Siracusa Provincia
+DATA TROVATA: 3/3/2026
+Leggo articolo: Accertamenti TARI 2020 – Verifica e segnalazione posizioni già regolarizzate
+DATA TROVATA: 26/2/2026
+Leggo articolo: Referendum Costituzionale del 22 e 23 marzo 2026 – Elenco Scrutatori
+DATA TROVATA: 26/2/2026
+Leggo articolo: Referendum Costituzionale del 22 e 23 marzo 2026 – Agevolazioni tariffarie per i viaggi
+DATA TROVATA: 24/2/2026
+Leggo articolo: Referendum costituzionale 22 e 23 marzo 2026: convocazione della commissione elettorale comunale per la nomina degli scrutatori
+DATA TROVATA: 24/2/2026
+Leggo articolo: Referendum confermativo del 22 e 23 marzo 2026: modalità di voto domiciliare per gli elettori affetti da gravi disabilità e infermità
+DATA TROVATA: 20/2/2026
+Leggo articolo: Ciclone Harry: modalità di accesso al contributo straordinario per attività economiche e produttive e per privati
+DATA TROVATA: 19/2/2026
+Leggo articolo: Referendum Costituzionale del 22 e 23 marzo 2026: convocazione comizi elettorali
+DATA TROVATA: 13/2/2026
+Leggo articolo: Asilo nido comunale: avviso per l’iscrizione alle famiglie inserite in graduatoria ma non ammesse
+DATA TROVATA: 9/2/2026
 
 ========== ORDINE FINALE ==========
 
@@ -90,18 +78,18 @@ DATA TROVATA: 17/3/2026
 23/03/2026 - Servizio Civile Universale: incontro online con il responsabile ed il coordinatore
 18/03/2026 - Referendum confermativo del 22 e 23 marzo 2026: luogo di riunione delle sezioni elettorali
 17/03/2026 - Referendum confermativo del 22 e 23 marzo 2026: servizio di trasporto per elettori non deambulanti
-10/03/2025 - Censimento amianto: comunicazione al Comune sulla presenza del materiale da parte di soggetti pubblici e privati
-24/02/2025 - Reddito di Povertà: presentazione domande a partire dal 25 febbraio
-22/11/2024 - “Carlentini a Scuola”: doposcuola gratuito per alunni di scuola primaria
+16/03/2026 - Referendum confermativo del 22 e 23 marzo 2026: rilascio tessere elettorali
+15/03/2026 - Allerta meteo arancione: misure di sicurezza a tutela della pubblica incolumità
+10/03/2026 - Esumazioni ordinarie presso il cimitero comunale: a partire dal 30 aprile
 
 ===================================
 
 Feed creato con 15 elementi
 Feed salvato in: C:\GitHub\carlentini-rss\feed.xml
 Nuove modifiche trovate 
-[main 39b72b2] Aggiornamento automatico feed RSS
- 1 file changed, 1 insertion(+), 1 deletion(-)
+[main c6814e2] Aggiornamento automatico feed RSS
+ 4 files changed, 111 insertions(+), 26 deletions(-)
 To https://github.com/UgoMusmeci/carlentini-rss.git
-   ac96656..39b72b2  main -> main
-COMPLETATO 07/05/2026 17:08:18,81 
+   39b72b2..c6814e2  main -> main
+COMPLETATO 08/05/2026 12:41:38,80 
 ============================ 
